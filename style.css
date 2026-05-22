@@ -1,0 +1,473 @@
+/* CSS KESELURUHAN & LATAR BELAKANG */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #050510; color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden; min-height: 100vh;
+}
+.stars-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); z-index: 0;
+}
+.star {
+    position: absolute; background: #fff; border-radius: 50%;
+    box-shadow: 0 0 10px #fff; animation: twinkle linear infinite;
+}
+@keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
+
+/* TRANSISI LAYAR */
+.screen {
+    position: absolute; top: 0; left: 0; width: 100%; min-height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), filter 2s ease; z-index: 2;
+}
+.screen.hidden { opacity: 0; pointer-events: none; filter: blur(20px); }
+.screen.active { opacity: 1; pointer-events: auto; filter: blur(0); }
+
+/* --- AMPLOP KACA --- */
+.envelope-wrapper { position: relative; cursor: pointer; text-align: center; animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+.envelope {
+    position: relative; width: 320px; height: 220px; background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px; box-shadow: 0 0 30px rgba(255, 105, 180, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05); transition: all 0.5s ease;
+}
+.envelope-wrapper:hover .envelope { box-shadow: 0 0 50px rgba(255, 105, 180, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.1); transform: scale(1.05); }
+.flap {
+    position: absolute; top: 0; left: 0; width: 0; height: 0;
+    border-left: 160px solid transparent; border-right: 160px solid transparent; border-top: 110px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px); z-index: 4; transform-origin: top; transition: transform 1s 0.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 1s;
+}
+.pocket {
+    position: absolute; bottom: 0; left: 0; width: 0; height: 0;
+    border-left: 160px solid rgba(255, 255, 255, 0.08); border-right: 160px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 110px solid rgba(255, 255, 255, 0.1); border-radius: 0 0 15px 15px; z-index: 3;
+}
+.heart-seal {
+    position: absolute; top: 90px; left: 145px; font-size: 35px; z-index: 5;
+    animation: heartbeat 1.5s infinite; text-shadow: 0 0 25px #ff0055, 0 0 50px #ff0055; transition: opacity 0.5s; user-select: none;
+}
+@keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.3); } 30% { transform: scale(1); } 45% { transform: scale(1.3); } 100% { transform: scale(1); } }
+.letter-preview {
+    position: absolute; background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(255,165,0,0.8)); /* Reverted to yellow/gold */
+    width: 280px; height: 180px; top: 20px; left: 20px; border-radius: 10px; box-shadow: 0 0 30px rgba(255,215,0,0.5);
+    z-index: 2; transition: transform 1.5s 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.envelope-wrapper.open .flap { transform: rotateX(180deg); z-index: 1; }
+.envelope-wrapper.open .heart-seal { opacity: 0; }
+.envelope-wrapper.open .letter-preview { transform: translateY(-250px) scale(1.2); }
+.tap-text {
+    position: absolute; bottom: -80px; left: 50%; width: 500px; margin-left: -250px; text-align: center;
+    font-family: 'Caveat', cursive; font-size: 2.8rem;
+    color: #ffb6c1; text-shadow: 0 0 15px rgba(255, 182, 193, 0.8); animation: textPulse 2s infinite;
+}
+@keyframes textPulse { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+
+
+/* --- RUANG HADIAH --- */
+.glass-container {
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 30px rgba(255, 255, 255, 0.05);
+    max-width: 900px; width: 100%; margin: 40px auto; border-radius: 30px; padding: 60px 40px; text-align: center;
+    position: relative; z-index: 10; /* Berada di atas kelopak bunga */
+}
+.gifts-container { display: flex; justify-content: center; gap: 50px; margin-top: 40px; flex-wrap: wrap; }
+.gift-wrapper { display: flex; flex-direction: column; align-items: center; gap: 25px; cursor: pointer; }
+.gift-label { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #ffb6c1; text-shadow: 0 0 15px rgba(255, 182, 193, 0.6); opacity: 0.7; transition: opacity 0.3s, transform 0.3s; }
+.gift-wrapper:hover .gift-label { opacity: 1; transform: scale(1.1); }
+.gift-box { position: relative; width: 130px; height: 130px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.gift-wrapper:hover .gift-box { transform: scale(1.15) translateY(-15px); }
+.gift-lid {
+    position: absolute; top: -20px; left: -10px; width: 150px; height: 35px; background: linear-gradient(90deg, #ff0055, #ff69b4);
+    border-radius: 8px; box-shadow: 0 10px 25px rgba(255, 0, 85, 0.5); z-index: 2; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+}
+.gift-lid::after {
+    content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 30px; height: 30px;
+    background: transparent; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 0 10px #fff;
+}
+.gift-body {
+    position: absolute; top: 15px; left: 0; width: 130px; height: 115px; background: linear-gradient(135deg, #8a2be2, #4169e1);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 35px rgba(138, 43, 226, 0.5); z-index: 1;
+}
+.gift-number { font-size: 4rem; font-weight: bold; font-family: 'Caveat', cursive; color: rgba(255,255,255,0.9); text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+.gift-box.opened .gift-lid { transform: translateY(-80px) rotate(25deg); opacity: 0; }
+.gift-box.opened { box-shadow: 0 0 80px #fff, 0 0 150px #ff69b4; z-index: 10; }
+
+/* MODALS */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
+    z-index: 100; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px); opacity: 0; pointer-events: none; transition: opacity 0.6s ease; padding: 20px; overflow-y: auto;
+}
+.modal.active { opacity: 1; pointer-events: auto; }
+.modal-content { transform: scale(0.8) translateY(50px); transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 90vh; overflow-y: auto; }
+.modal.active .modal-content { transform: scale(1) translateY(0); }
+.neon-text { font-family: 'Caveat', cursive; font-size: 4.5rem; color: #fff; text-shadow: 0 0 5px #fff, 0 0 15px #ff69b4, 0 0 30px #ff69b4, 0 0 60px #ff1493; margin-bottom: 20px; }
+.story-text { font-size: 1.2rem; color: #f0f0f0; margin-bottom: 20px; }
+
+/* GALERI FOTO */
+.glowing-gallery { display: flex; justify-content: center; gap: 25px; margin: 40px 0; flex-wrap: wrap; }
+.photo-frame {
+    width: 180px; height: 230px; border-radius: 12px; padding: 5px; background: linear-gradient(45deg, #ff0055, #ff69b4, #8a2be2, #4169e1, #ff0055);
+    background-size: 400%; animation: borderGlow 6s linear infinite; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: transform 0.4s;
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.photo-frame:hover { transform: scale(1.15) translateY(-10px); z-index: 10; box-shadow: 0 20px 40px rgba(255, 105, 180, 0.5); }
+
+/* FOTO UTAMA FINAL */
+.final-frame {
+    width: 320px; height: 420px; margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 0, 85, 0.3) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 0, 85, 0.4), inset 0 0 30px rgba(255, 0, 85, 0.2) !important;
+    animation: floatFrame 4s ease-in-out infinite, redGlowPulse 3s infinite alternate !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.final-frame:hover {
+    transform: translateY(-15px) scale(1.05) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 0, 85, 0.6), inset 0 0 50px rgba(255, 0, 85, 0.4) !important;
+    border-color: rgba(255, 0, 85, 0.8) !important;
+}
+
+@keyframes redGlowPulse {
+    0% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 0, 85, 0.3), inset 0 0 20px rgba(255, 0, 85, 0.2); }
+    100% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 0, 85, 0.6), inset 0 0 40px rgba(255, 0, 85, 0.4); }
+}
+
+/* Glass Rose Inside */
+.glass-rose-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-rose-wrapper .premium-rose-img {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    animation: roseFloatInner 6s ease-in-out infinite, imgPulse 3s infinite alternate;
+}
+
+.premium-rose-img-final {
+    width: 250px; /* Maximize size inside the dome */
+    height: 250px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 40px rgba(255, 0, 85, 1)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+    animation: imgPulse 3s infinite alternate;
+}
+
+@keyframes imgPulse {
+    0% { filter: drop-shadow(0 0 20px rgba(255, 0, 85, 0.6)) brightness(1); }
+    100% { filter: drop-shadow(0 0 50px rgba(255, 0, 85, 1)) brightness(1.2); }
+}
+
+@keyframes roseFloatInner {
+    0%, 100% { transform: translateY(0) rotate(-2deg) scale(1); }
+    50% { transform: translateY(-15px) rotate(2deg) scale(1.05); }
+}
+
+.red-magic-dust {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+.red-spark {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #ff0055;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ff0055, 0 0 25px #ffb6c1;
+    opacity: 0;
+    animation: floatRedSpark 3s ease-in-out infinite;
+}
+
+@keyframes floatRedSpark {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { opacity: 1; transform: translateY(-50px) scale(1.5); }
+    100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}
+
+.rs1 { left: 20%; bottom: 20%; animation-delay: 0s; }
+.rs2 { left: 80%; bottom: 30%; animation-delay: 1s; }
+.rs3 { left: 30%; bottom: 60%; animation-delay: 2s; }
+.rs4 { left: 70%; bottom: 50%; animation-delay: 0.5s; }
+.rs5 { left: 50%; bottom: 80%; animation-delay: 1.5s; }
+.rs6 { left: 40%; bottom: 10%; animation-delay: 2.5s; }
+.rs7 { left: 60%; bottom: 40%; animation-delay: 0.8s; }
+@keyframes floatFrame { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+@keyframes borderGlow { 0% { background-position: 0% 50%; } 100% { background-position: 400% 50%; } }
+
+/* DAFTAR ALASAN */
+.reasons-list { text-align: left; margin: 40px auto; max-width: 600px; }
+.reason-item {
+    font-size: 1.2rem; color: #fff; margin-bottom: 20px; padding: 20px; background: rgba(255,255,255,0.05);
+    border-left: 5px solid #ff69b4; border-radius: 0 10px 10px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.3s;
+}
+.reason-item:hover { transform: translateX(10px); background: rgba(255,255,255,0.1); border-color: #ff0055; }
+
+
+/* --- TAHAP 4: PERJALANAN AKHIR --- */
+
+/* CSS Bulan Sabit */
+.css-moon {
+    width: 100px; height: 100px; border-radius: 50%; background: transparent;
+    box-shadow: 20px 20px 0 0 #ffda94; margin: 0 auto 40px auto;
+    filter: drop-shadow(0 0 25px rgba(255, 218, 148, 0.8));
+    animation: moonFloat 4s ease-in-out infinite;
+}
+@keyframes moonFloat { 0%, 100% { transform: translateY(0) rotate(-15deg); } 50% { transform: translateY(-15px) rotate(-15deg); } }
+
+/* Surat Romantis Pendek */
+.romantic-letter {
+    text-align: center;
+}
+.romantic-letter p {
+    font-size: 1.35rem; line-height: 2.2; margin-bottom: 15px; color: #f0f0f0; font-weight: 300;
+}
+
+/* Tombol Umum */
+.glow-btn {
+    background: transparent; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 600;
+    padding: 15px 40px; border: 2px solid #ff69b4; border-radius: 50px; cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4), inset 0 0 15px rgba(255, 105, 180, 0.2); transition: all 0.3s; margin-top: 30px;
+}
+.glow-btn:hover { background: #ff69b4; box-shadow: 0 0 30px #ff69b4, 0 0 50px #ff0055; transform: scale(1.05); }
+.glow-btn.ghost { border-color: rgba(255,255,255,0.5); box-shadow: none; }
+.glow-btn.ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+/* Floating Hearts Animasi Pelukan */
+.heart-float {
+    position: fixed; color: #ff0055; font-size: 30px; pointer-events: none;
+    animation: floatUpHeart 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; z-index: 9999; text-shadow: 0 0 20px rgba(255, 0, 85, 0.8);
+}
+@keyframes floatUpHeart { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20% { opacity: 1; transform: translateY(-20vh) scale(1.5) rotate(15deg); } 100% { transform: translateY(-120vh) scale(2) rotate(360deg); opacity: 0; } }
+
+/* FORM BALASAN, BUNGA CSS RAKSASA, & SLIDER CINTA */
+/* --- PREMIUM ENCHANTED ROSE --- */
+.enchanted-rose-container {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    margin: 40px auto 80px auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transform: scale(1.05); /* Increased overall scale */
+    transform-origin: bottom center;
+}
+
+/* Base */
+.dome-base {
+    position: absolute;
+    bottom: 0;
+    width: 320px; /* Much wider base */
+    height: 50px; /* Thicker */
+    background: linear-gradient(to right, #1a0808, #4a1111, #7a1c1c, #4a1111, #1a0808);
+    border-radius: 50%;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 8px 20px rgba(255,100,150,0.4), 0 0 40px rgba(255, 0, 85, 0.5);
+    z-index: 5;
+    border: 2px solid #8a2a2a;
+}
+.dome-base::after {
+    content: '';
+    position: absolute;
+    top: -20px; left: 15px;
+    width: 290px; height: 40px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+}
+
+/* Glass Dome */
+.glass-dome {
+    position: absolute;
+    bottom: 25px;
+    width: 280px; /* Wider dome */
+    height: 440px; /* Taller dome */
+    border-radius: 140px 140px 15px 15px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01) 50%, rgba(255,255,255,0.1));
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 80px rgba(255, 0, 100, 0.3), inset 0 0 50px rgba(255,255,255,0.15), inset 0 0 120px rgba(255, 20, 100, 0.15);
+    z-index: 20;
+    pointer-events: none;
+    overflow: hidden;
+}
+.dome-highlight {
+    position: absolute;
+    top: 20px; left: 30px;
+    width: 50px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    transform: rotate(-25deg);
+    filter: blur(8px);
+}
+
+/* Magic Dust */
+.magic-dust {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+}
+.spark {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff69b4, 0 0 20px #fff;
+    opacity: 0;
+    animation: floatSpark 4s ease-in-out infinite;
+}
+.s1 { left: 30%; bottom: 10%; animation-delay: 0s; }
+.s2 { left: 60%; bottom: 20%; animation-delay: 1s; }
+.s3 { left: 40%; bottom: 40%; animation-delay: 2s; }
+.s4 { left: 70%; bottom: 60%; animation-delay: 0.5s; }
+.s5 { left: 50%; bottom: 80%; animation-delay: 1.5s; }
+
+@keyframes floatSpark {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { opacity: 1; transform: translateY(-50px) scale(1.5); }
+    100% { transform: translateY(-100px) scale(0); opacity: 0; }
+}
+
+/* Premium Rose Image Container */
+.premium-rose-svg-container {
+    position: absolute;
+    bottom: 70px;
+    width: 280px; /* Match new dome width */
+    height: 280px;
+    left: 50%;
+    margin-left: -140px; /* Center */
+    z-index: 10;
+    animation: roseHover 5s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.premium-rose-svg-container::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px; /* Massive aura */
+    height: 280px;
+    background: radial-gradient(circle, rgba(255,0,85,0.6) 0%, rgba(255,50,100,0.3) 40%, rgba(255,0,85,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulseAura 3s infinite alternate;
+}
+@keyframes roseHover {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.rose-aura {
+    animation: pulseAura 3s ease-in-out infinite alternate;
+}
+@keyframes pulseAura {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+.rose-petals {
+    animation: bloomPulseSVG 3s infinite alternate;
+}
+@keyframes bloomPulseSVG {
+    0% { filter: drop-shadow(0 0 15px rgba(255, 0, 85, 0.4)); }
+    100% { filter: drop-shadow(0 0 30px rgba(255, 0, 85, 0.8)); }
+}
+
+.bubble-love {
+    position: absolute; bottom: 0; font-size: 28px; color: #ff69b4;
+    animation: bubbleUp 3s ease-in forwards; opacity: 0; pointer-events: none;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+@keyframes bubbleUp {
+    0% { transform: translateY(0) scale(0.5) rotate(-10deg); opacity: 1; }
+    100% { transform: translateY(-150px) scale(1.5) rotate(20deg); opacity: 0; }
+}
+.petal {
+    position: absolute; top: -10%; 
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.7) 0%, rgba(255, 20, 147, 0.7) 100%); 
+    border-radius: 150px 0 150px 0;
+    z-index: 1; pointer-events: none;
+    animation: fallDown linear forwards;
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+@keyframes fallDown {
+    0% { transform: translateY(0) rotate(0deg) rotateX(0deg) rotateY(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(120vh) rotate(720deg) rotateX(360deg) rotateY(360deg); opacity: 0; }
+}
+.love-slider {
+    -webkit-appearance: none; width: 100%; max-width: 600px; height: 20px; border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2); outline: none; margin: 20px 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.love-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 45px; height: 45px; border-radius: 50%;
+    background: #ff0055; cursor: pointer;
+    box-shadow: 0 0 20px #ff0055, 0 0 40px #ff69b4;
+    transition: transform 0.2s;
+}
+.love-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.percentage-display {
+    font-size: 5rem; font-family: 'Caveat', cursive; font-weight: bold;
+    text-shadow: 0 0 20px #ff0055, 0 0 40px #ff69b4; color: #fff;
+    margin-top: 10px; transition: all 0.3s ease-out;
+}
+.reply-box {
+    width: 100%; max-width: 550px; padding: 20px; border-radius: 15px;
+    border: 2px solid rgba(255, 105, 180, 0.5); background: rgba(255, 255, 255, 0.05);
+    color: #fff; font-family: 'Poppins', sans-serif; font-size: 1.1rem;
+    margin-bottom: 20px; outline: none; transition: all 0.3s;
+    resize: vertical; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.reply-box:focus {
+    border-color: #ff0055; background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4), inset 0 0 10px rgba(0,0,0,0.5);
+}
+.wa-btn {
+    background: linear-gradient(90deg, #25D366, #128C7E) !important;
+    border: none !important; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4) !important;
+}
+.wa-btn:hover {
+    box-shadow: 0 0 40px rgba(37, 211, 102, 0.8) !important; transform: scale(1.05) !important;
+}
+
+/* RESPONSIVE LAYAR HP */
+@media (max-width: 768px) {
+    .envelope { width: 280px; height: 192px; }
+    .flap { border-left-width: 140px; border-right-width: 140px; border-top-width: 96px; }
+    .pocket { border-left-width: 140px; border-right-width: 140px; border-bottom-width: 96px; }
+    .letter-preview { width: 240px; height: 160px; left: 20px; }
+    
+    .glass-container { padding: 40px 20px; border-radius: 20px; margin: 20px auto; width: 95%; }
+    .neon-text { font-size: 3rem !important; }
+    .gifts-container { gap: 30px; }
+    .gift-box { width: 100px; height: 100px; }
+    .gift-lid { width: 120px; height: 30px; top: -15px; left: -10px; }
+    .gift-body { width: 100px; height: 85px; }
+    .photo-frame { width: 140px; height: 180px; }
+    .final-frame { width: 240px; height: 320px; }
+    
+    .romantic-letter p { font-size: 1.15rem; }
+    .big-flower { width: 220px; height: 220px; }
+    
+    .enchanted-rose-container {
+        transform: scale(0.7);
+        margin: 20px auto 40px auto;
+    }
+}

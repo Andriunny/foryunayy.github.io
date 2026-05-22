@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Untuk Sayangkuuuuu yunayyy ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Spesial: Modern Cursive & Clean Sans-serif -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="loader" class="loader">
+        <img src="foto5.jpeg" alt="Cute Bear" class="loader-bear">
+    </div>
+
+    <!-- Live Visual Background (Petals) untuk seluruh halaman -->
+    <div id="petals-bg"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;">
+    </div>
+
+    <!-- Latar Belakang Galaksi & Bintang -->
+    <div class="stars-bg"></div>
+
+    <!-- TAHAP 1: Amplop Kaca Bercahaya -->
+    <div id="envelope-screen" class="screen active">
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <!-- Segel Hati Berdenyut -->
+                <div class="heart-seal">❤️</div>
+                <div class="letter-preview"></div>
+            </div>
+            <div class="tap-text glow">Sentuh suratnya yunayy❤️...</div>
+        </div>
+    </div>
+
+    <!-- TAHAP 2: Ruang Hadiah (3 Kotak Keajaiban) -->
+    <div id="hub-screen" class="screen hidden">
+        <div class="glass-container hub-container">
+            <h1 class="neon-text" style="font-size: 4rem; margin-bottom: 10px;">3 kotak Rahasia</h1>
+            <p class="story-text" style="margin-bottom: 40px; font-size: 1.3rem;">Ada 3 kotak keajaiban yang sudah
+                kusiapkan untukmu❤️.<br>Buka semuanya satu per satu ya❤️...</p>
+
+            <div class="gifts-container">
+                <!-- KOTAK 1 -->
+                <div class="gift-wrapper" onclick="openGift(1)">
+                    <div class="gift-box" id="gift-1">
+                        <div class="gift-lid"></div>
+                        <div class="gift-body"><span class="gift-number">1</span></div>
+                    </div>
+                    <p class="gift-label">Kenangan</p>
+                </div>
+
+                <!-- KOTAK 2 -->
+                <div class="gift-wrapper" onclick="openGift(2)">
+                    <div class="gift-box" id="gift-2">
+                        <div class="gift-lid"></div>
+                        <div class="gift-body"><span class="gift-number">2</span></div>
+                    </div>
+                    <p class="gift-label">Alasan</p>
+                </div>
+
+                <!-- KOTAK 3 -->
+                <div class="gift-wrapper" onclick="openGift(3)">
+                    <div class="gift-box" id="gift-3">
+                        <div class="gift-lid"></div>
+                        <div class="gift-body"><span class="gift-number">3</span></div>
+                    </div>
+                    <p class="gift-label">Rahasia</p>
+                </div>
+            </div>
+
+            <!-- TAHAP 3: Tombol Final (Akan muncul setelah ke-3 kotak dibuka) -->
+            <div id="final-magic-container" class="hidden" style="margin-top: 80px;">
+                <p class="story-text" style="margin-bottom: 20px;">Kamu sudah membuka semuanya... tapi tunggu.</p>
+                <button class="glow-btn"
+                    style="font-size: 1.5rem; padding: 15px 40px; background: #ff0055; box-shadow: 0 0 30px #ff0055;"
+                    onclick="startFinalJourney()">Ada Satu Keajaiban Terakhir ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAHAP 4: Perjalanan Akhir (Visual Spesial dengan Foto) -->
+    <div id="final-journey-screen" class="screen hidden" style="align-items: flex-start; overflow-y: auto;">
+        <div class="glass-container journey-container" style="margin-top: 50px; margin-bottom: 50px;">
+
+            <!-- Visual Bulan Sabit -->
+            <div class="css-moon"></div>
+
+            <h2 class="neon-text" style="font-size: 4.5rem; margin-bottom: 20px;">Satu Hal Lagi...</h2>
+
+            <!-- Surat Romantis -->
+            <div class="romantic-letter" style="margin-top: 20px; border: none; padding-top: 0;">
+                <p>Mungkin aku bukan orang yang paling romantis, tapi setiap kali aku menatap matamu, aku melihat
+                    seluruh masa depanku di sana:3.</p>
+                <p>Kamu adalah jawaban dari doa-doa yang tidak pernah kuucapkan dengan lantang. Terima kasih sudah hadir
+                    dan mewarnai duniaku.</p>
+            </div>
+
+            <!-- Foto Utama Bersama -->
+            <div class="final-photo-container" style="margin: 50px auto;">
+                <div class="photo-frame final-frame">
+                    <!-- GANTI SRC INI DENGAN FOTO BERDUA KALIAN YANG PALING BAGUS -->
+                    <img src="foto1.jpeg" alt="Foto Kita Berdua">
+                </div>
+                <h3 class="neon-text" style="font-size: 3rem; margin-top: 30px; color: #ffb6c1 !important;">Kita,
+                    Selamanya.</h3>
+            </div>
+
+            <h1 class="neon-text"
+                style="font-size: 6rem; margin-top: 40px; margin-bottom: 10px; color: #ff0055 !important;">Aku
+                Mencintaimu</h1>
+
+            <!-- Tombol Final Interaktif -->
+            <div style="margin-top: 40px; padding-bottom: 30px; position: relative;">
+                <button class="glow-btn" style="padding: 20px 50px; font-size: 1.5rem;" id="final-hug-btn">Peluk Erat
+                    Virtual 🤗</button>
+                <p class="story-text" style="font-size: 1rem; margin-top: 15px; margin-bottom: 40px; opacity: 0.7;">
+                    (Sentuh tombol ini untuk keajaiban cinta)</p>
+
+                <!-- Bubble Love Container (Akan diisi oleh JavaScript) -->
+                <div id="bubble-container"
+                    style="position: absolute; width: 100%; height: 120px; bottom: 80px; pointer-events: none; overflow: visible;">
+                </div>
+
+                <button class="glow-btn"
+                    style="padding: 15px 40px; font-size: 1.3rem; background: linear-gradient(45deg, #ff0055, #ff69b4); border: none; box-shadow: 0 0 30px #ff0055;"
+                    onclick="goToFlowerScreen()">Buka Halaman Spesial Terakhir 🌹</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAHAP 5: Halaman Bunga Spesial & Persentase Cinta -->
+    <div id="flower-screen" class="screen hidden"
+        style="align-items: flex-start; overflow-y: auto; background: radial-gradient(ellipse at bottom, #2b0010 0%, #050510 100%);">
+
+        <div class="glass-container"
+            style="max-width: 900px; padding: 40px; margin-top: 50px; margin-bottom: 50px; z-index: 2; position: relative; background: rgba(255, 255, 255, 0.08); border-radius: 30px;">
+            <h2 class="neon-text" style="font-size: 4rem; margin-bottom: 10px;">Kejutan Terakhir</h2>
+            <p class="story-text" style="font-size: 1.3rem; margin-bottom: 40px;">Ini adalah bunga mawar abadi, sama
+                seperti cintaku padamu... 🌹</p>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 40px;">
+                <!-- Bunga Mawar Premium SVG -->
+                <div class="enchanted-rose-container">
+                    <div class="glass-dome">
+                        <div class="dome-highlight"></div>
+                        <div class="magic-dust">
+                            <div class="spark s1"></div>
+                            <div class="spark s2"></div>
+                            <div class="spark s3"></div>
+                            <div class="spark s4"></div>
+                            <div class="spark s5"></div>
+                        </div>
+                    </div>
+
+                    <div class="premium-rose-svg-container">
+                        <img src="vvip_rose_transparent.png" alt="VVIP Premium Rose" class="premium-rose-img-final">
+                    </div>
+
+                    <div class="dome-base"></div>
+                </div>
+            </div>
+
+            <!-- Kalkulator / Persentase Cinta -->
+            <div class="love-calculator" style="margin-top: 70px;">
+                <h3 class="neon-text" style="font-size: 3.5rem; color: #ffb6c1 !important;">Seberapa Besar Cintamu?</h3>
+                <p class="story-text" style="font-size: 1.2rem;">Geser pengukur di bawah ini untuk menunjukkan sebesar
+                    apa cintamu kepadaku!</p>
+
+                <div class="slider-container" style="margin: 50px 0;">
+                    <input type="range" min="0" max="1000" value="100" class="love-slider" id="loveSlider"
+                        oninput="updatePercentage()">
+                    <div class="percentage-display">
+                        <span id="lovePercentage">100</span><span style="color: #ff0055; font-size: 4rem;">%</span>
+                    </div>
+                </div>
+
+                <!-- Form Balasan (Kirim ke WhatsApp) -->
+                <div class="reply-section"
+                    style="margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 50px;">
+                    <p class="story-text" style="margin-bottom: 20px; font-size: 1.2rem;">Kirimkan jawaban persentase di
+                        atas beserta pesan spesialmu untukku. 💕</p>
+                    <textarea id="reply-message" rows="5" placeholder="Ketik perasaanmu di sini sayang..."
+                        class="reply-box"></textarea>
+                    <br>
+                    <button class="glow-btn wa-btn" onclick="sendWhatsApp()">Kirim Jawaban ke Aku (via WA) 💌</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL 1: Galeri Kenangan -->
+    <div id="modal-1" class="modal hidden">
+        <div class="glass-container modal-content">
+            <h2 class="neon-text">Pemeran Utama</h2>
+            <p class="story-text">Menyaksikanmu adalah cerita terbaik yang ingin kuulang ribuan kali.</p>
+            <div class="glowing-gallery">
+                <div class="photo-frame"><img src="foto1.jpeg" alt="Moment 1"></div>
+                <div class="photo-frame"><img src="foto2.jpeg" alt="Moment 2"></div>
+                <div class="photo-frame"><img src="foto3.jpeg" alt="Moment 3"></div>
+                <div class="photo-frame"><img src="foto4.jpeg" alt="Moment 4"></div>
+            </div>
+            <button class="glow-btn" onclick="closeModal(1)">Tutup</button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Alasan Sayang -->
+    <div id="modal-2" class="modal hidden">
+        <div class="glass-container modal-content">
+            <h2 class="neon-text" style="font-size: 3.5rem;">Kenapa Aku Sayang Kamu?</h2>
+            <div class="reasons-list">
+                <div class="reason-item">1. Senyummu adalah obat paling ampuh untuk hariku yang lelah.</div>
+                <div class="reason-item">2. Ini bukan lagi tentang mencari alasan, tetapi tentang rasa nyaman yang
+                    selalu aku temukan setiap kali bersamamu.</div>
+                <div class="reason-item">3. Sederhana saja, karena bersamamu aku tidak perlu berpura-pura menjadi orang
+                    lain agar diterima.</div>
+                <div class="reason-item">4. Aku menyayangimu bukan karena hubungan kita mudah, tapi karena kita selalu
+                    punya alasan untuk tidak saling melepaskan.</div>
+                <div class="reason-item">5. Karena kamu adalah kamu, dan tidak ada yang bisa menggantikanmu di semesta
+                    ini.</div>
+            </div>
+            <button class="glow-btn" onclick="closeModal(2)">Tutup</button>
+        </div>
+    </div>
+
+    <!-- MODAL 3: Pesan Singkat -->
+    <div id="modal-3" class="modal hidden">
+        <div class="glass-container modal-content final-modal">
+            <h2 class="neon-text" style="font-size: 5rem;">Terima Kasih</h2>
+            <p class="story-text" style="font-size: 1.5rem; margin-top: 30px;">Sudah bertahan, berjuang, dan melangkah
+                sejauh ini bersamaku.</p>
+            <p class="story-text" style="font-size: 1.5rem;">Teruslah bersamaku, karena perjalanannya masih panjang.</p>
+            <button class="glow-btn ghost" style="margin-top: 40px;" onclick="closeModal(3)">Kembali</button>
+        </div>
+    </div>
+
+    <!-- Lagu Latar Belakang (Romantic Piano) -->
+    <audio id="bgm" loop>
+        <source src="laguku.mp4">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
